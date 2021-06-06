@@ -1,0 +1,65 @@
+.popup.signonline {
+  max-width: 1146px;
+  width: 100%;
+  .start_specialty {
+    margin-bottom: 20px;
+  }
+  .start_fieldset {
+    margin-top: 20px;
+  }
+}
+
+.signonline_wrapper {
+  margin-top: 51px;
+}
+
+.signonline_left {
+  display: flex;
+  flex-direction: column;
+  max-width: 595px;
+  width: 100%;
+}
+
+.signonline_right {
+  width: 100%;
+  max-width: 404px;
+  .start__footer {
+    margin-top: 30px;
+  }
+}
+
+.signonline_wrapper {
+  display: flex;
+  grid-gap: 30px;
+}
+
+
+.start__submit {
+  &.disabled {
+    opacity: .5;
+    cursor: auto;
+    pointer-events: none;
+  }
+  &:hover {
+    background-color: #0ea89e;
+    transition: 0.25s all ease;
+  }
+  &:focus {
+    background-color: #0ea89e;
+    transition: 0.25s all ease;
+  }
+  transition: 0.25s all ease;
+  cursor: pointer;
+  //margin-top: 30px;
+  padding: 16px 0;
+  width: 100%;
+  background: #0dc2b6;
+  border-radius: 6px;
+  border: 0;
+  outline: none;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 27px;
+  text-align: center;
+  color: #fff;
+}
