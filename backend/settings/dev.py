@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # apps
     'backend.api.core.apps.CoreConfig',
     'backend.api.account.apps.AccountConfig',
+    'backend.api.team.apps.TeamConfig',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +84,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': _l('ENGINE'),
-        'NAME': _l('NAME'),
+        'NAME': os.path.join(BASE_DIR, _l('NAME')),
         'USER': _l('DB_USER'),
         'PASSWORD': _l('PASSWORD'),
         'HOST': _l('HOST'),
