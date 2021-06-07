@@ -1,5 +1,6 @@
 <template>
     <input
+            :type="type? type: 'text'"
             class="base-input"
             :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"
@@ -10,12 +11,16 @@
     export default {
         props: {
             modelValue: String,
+
+
+            type: String,
         }
     }
 </script>
 
 <style lang="scss">
     .base-input {
+        width: 100%;
         background: #303030;
         border-radius: 4.87805px;
         font-family: PT Root UI;
@@ -29,6 +34,15 @@
         outline: none;
         &.base-input_mb-30 {
             margin-bottom: 30px;
+        }
+        &.base-input_searching {
+            padding: 18px 22px 18px 62px;
+            font-family: PT Root UI;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 23px;
+            color: #A7A7A7;
         }
     }
 </style>
