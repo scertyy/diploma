@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # apps
     'backend.api.core.apps.CoreConfig',
+    'backend.api.account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -87,9 +88,6 @@ DATABASES = {
         'PASSWORD': _l('PASSWORD'),
         'HOST': _l('HOST'),
         'PORT': _l('PORT'),
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        }
     }
 }
 
