@@ -1,17 +1,25 @@
 <template>
   <div class="app">
-    <div id="nav" v-if="route.name !== 'auth'">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <Nav  v-if="route.name !== 'auth'"></Nav>
+    <div class="app__container" :class="{'app__container_full': route.name === 'auth'}">
+      <TopNav v-if="route.name !== 'auth'"></TopNav>
+      <div class="app__content" :class="{'app__content_full': route.name === 'auth'}">
+        <router-view></router-view>
+      </div>
     </div>
-    <router-view/>
   </div>
 
 </template>
 
 <script>
   import { useRoute } from 'vue-router'
+
+  import Nav from './components/Nav'
+  import TopNav from './components/TopNav'
   export default {
+    components: {
+      Nav, TopNav
+    },
     setup() {
       const route = useRoute()
       return {
@@ -35,24 +43,29 @@
   position: relative;
   background: #252525;
   overflow: hidden;
+
+  display: flex;
+}
+.app__container {
+  height: 100%;
+  width: calc(100% - 120px);
+  &.app__container_full {
+    width: 100%;
+  }
+}
+.app__content {
+  height: calc(100% - 90px);
+  width: 100%;
+  &.app__content_full {
+    height: 100%;
+  }
 }
 body {
   margin: 0;
   padding: 0;
 }
 
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 input, textarea, button {
   -webkit-appearance: none;
   -webkit-box-shadow: none;
@@ -63,4 +76,7 @@ input, textarea, button {
   resize: none;
   border: none;
 }
+  * {
+    box-sizing: border-box!important;
+  }
 </style>

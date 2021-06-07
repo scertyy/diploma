@@ -17,5 +17,10 @@
 
         color: #252525;
         padding: 20px 64px;
+        cursor: pointer;
+
+        &.base-button_w-100 {
+            width: 100%;
+        }
     }
 </style>
