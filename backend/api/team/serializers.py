@@ -11,6 +11,13 @@ class TeamSerializer(serializers.ModelSerializer):
         model = Team
         fields = '__all__'
 
+    def create(self, validated_data):
+        team = Team.objects.create(**validated_data)
+        profile = Profile.objects.get(id=team.creator.id)
+        profile.teams.add(team)
+        profile.save()
+        return team
+
     def get_count_of_contributors(self, obj):
         count = Profile.objects.filter(teams__in=[obj.id, ]).count()
         return count
