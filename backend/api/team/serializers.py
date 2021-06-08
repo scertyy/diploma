@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from backend.api.profile.models import Profile
 from backend.api.profile.serializers import ProfileSerializer
-from backend.api.team.models import Team
+from backend.api.team.models import Team, Project
 from backend.api.team.services.serializers_utils import add_team_to_profile
 
 
@@ -22,3 +22,9 @@ class TeamSerializer(serializers.ModelSerializer):
 
     def get_count_of_contributors(self, obj):
         return Profile.objects.filter(teams__in=[obj.id, ]).count()
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'

@@ -5,13 +5,21 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
+
+from backend.api.board.views import BoardViewSet, TaskViewSet, CommentViewSet
 from backend.api.profile.views import RegisterApi, ProfileViewSet
-from backend.api.team.views import TeamViewSet
+from backend.api.team.views import TeamViewSet, ProjectViewSet
 
 router = routers.DefaultRouter()
+# Profile
 router.register('profile', ProfileViewSet)
+# Team
 router.register('team', TeamViewSet)
-
+router.register('project', ProjectViewSet)
+# Board
+router.register('board', BoardViewSet)
+router.register('task', TaskViewSet)
+router.register('comment', CommentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

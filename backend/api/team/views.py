@@ -3,8 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from backend.api.profile.models import Profile
-from backend.api.team.models import Team
-from backend.api.team.serializers import TeamSerializer
+from backend.api.team.models import Team, Project
+from backend.api.team.serializers import TeamSerializer, ProjectSerializer
 from backend.api.team.services.views_utils import get_team_and_user_data
 
 
@@ -49,3 +49,8 @@ class TeamViewSet(viewsets.ModelViewSet):
         profile.teams.remove(team)
         team.contributors.remove(profile)
         return Response({'success': 'Пользователь удален из команды'})
+
+
+class ProjectViewSet(viewsets.ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
