@@ -1,3 +1,4 @@
+import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, viewsets, permissions
 from rest_framework.decorators import action
@@ -19,12 +20,20 @@ class RegisterApi(generics.GenericAPIView):
         })
 
 
+class ProfileFilter(django_filters.FilterSet):
+    teams = django_filters.CharFilter(field_name='teams', lookup_expr='in')
+
+    class Meta:
+        model = Profile
+        fields = ['teams', 'user', 'position']
+
+
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
     permission_classes = (permissions.IsAuthenticated, )
     filter_backends = (DjangoFilterBackend, )
-    filterset_fields = ['teams', 'user', 'position']
+    filterset_class = ProfileFilter
 
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
     def get_current_profile(self, request):
