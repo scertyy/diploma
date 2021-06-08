@@ -14,9 +14,9 @@ class RegisterApi(generics.GenericAPIView):
     def post(self, request, *args,  **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+        serializer.save()
         return Response({
-            "success": "User Created Successfully.  Now perform Login to get your token"
+            "success": "User Created Successfully. Now perform Login to get your token"
         })
 
 
