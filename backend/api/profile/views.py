@@ -25,7 +25,7 @@ class ProfileFilter(django_filters.FilterSet):
 
     class Meta:
         model = Profile
-        fields = ['teams', 'user']
+        fields = ['teams']
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -34,10 +34,9 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
     filter_backends = (DjangoFilterBackend, filters.SearchFilter)
     filterset_class = ProfileFilter
-    search_fields = ['user__username']
+    search_fields = ['username']
 
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
     def get_current_profile(self, request):
-        profile = Profile.objects.get(user=request.user)
-        serializer = self.get_serializer(profile)
+        serializer = self.get_serializer(request.user)
         return Response(serializer.data)

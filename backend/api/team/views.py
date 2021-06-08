@@ -2,7 +2,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from backend.api.account.models import Profile
+from backend.api.profile.models import Profile
 from backend.api.team.models import Team
 from backend.api.team.serializers import TeamSerializer
 from backend.api.team.services.views_utils import get_team_and_user_data

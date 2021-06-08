@@ -1,4 +1,4 @@
-from backend.api.account.models import Profile
+from backend.api.profile.models import Profile
 from backend.api.team.models import Team
 
 

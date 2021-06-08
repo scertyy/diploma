@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from backend.api.account.models import Profile
-from backend.api.account.serializers import ProfileSerializer
+from backend.api.profile.models import Profile
+from backend.api.profile.serializers import ProfileSerializer
 from backend.api.team.models import Team
 from backend.api.team.services.serializers_utils import add_team_to_profile
 

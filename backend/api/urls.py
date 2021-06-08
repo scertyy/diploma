@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from backend.api.account.views import RegisterApi, ProfileViewSet
+from backend.api.profile.views import RegisterApi, ProfileViewSet
 from backend.api.team.views import TeamViewSet
 
 router = routers.DefaultRouter()

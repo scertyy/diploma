@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'django_filters',
 
     # apps
-    'backend.api.core.apps.CoreConfig',
-    'backend.api.account.apps.AccountConfig',
+    'backend.api.board.apps.CoreConfig',
+    'backend.api.profile.apps.AccountConfig',
     'backend.api.team.apps.TeamConfig',
 ]
 
@@ -106,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'profile.Profile'
 
 LANGUAGE_CODE = 'ru-RU'
 TIME_ZONE = 'Europe/Moscow'
