@@ -1,6 +1,6 @@
 import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import generics, viewsets, permissions
+from rest_framework import generics, viewsets, permissions, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -32,8 +32,9 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
     permission_classes = (permissions.IsAuthenticated, )
-    filter_backends = (DjangoFilterBackend, )
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter)
     filterset_class = ProfileFilter
+    search_fields = ['user__username']
 
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
     def get_current_profile(self, request):
