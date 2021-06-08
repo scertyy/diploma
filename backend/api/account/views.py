@@ -25,7 +25,7 @@ class ProfileFilter(django_filters.FilterSet):
 
     class Meta:
         model = Profile
-        fields = ['teams', 'user', 'position']
+        fields = ['teams', 'user']
 
 
 class ProfileViewSet(viewsets.ModelViewSet):

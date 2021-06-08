@@ -1,12 +1,14 @@
 from rest_framework import serializers
 
 from backend.api.account.models import Profile
+from backend.api.account.serializers import ProfileSerializer
 from backend.api.team.models import Team
 from backend.api.team.services.serializers_utils import add_team_to_profile
 
 
 class TeamSerializer(serializers.ModelSerializer):
     count_of_contributors = serializers.SerializerMethodField('get_count_of_contributors')
+    contributors = ProfileSerializer(many=True, read_only=True)
 
     class Meta:
         model = Team
