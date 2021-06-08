@@ -26,7 +26,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         team = Team.objects.get(id=team_id)
         if not team:
             return Response({'message': 'Команда с указанным идентификатором не найдена'})
-        if team.creator.user != current_user:
+        if team.creator != current_user:
             return Response({'message': 'Вы не являетесь создателем указанной команды'})
         profile.teams.add(team)
         team.contributors.add(profile)
