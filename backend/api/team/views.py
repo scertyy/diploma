@@ -58,6 +58,8 @@ class TeamViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    filter_backends = (DjangoFilterBackend, )
+    filterset_fields = ['team']
 
 
 class ContributorViewSet(viewsets.ModelViewSet):
