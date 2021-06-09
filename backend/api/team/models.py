@@ -9,6 +9,13 @@ class Team(models.Model):
                                           verbose_name='Список участников команды', blank=True)
 
 
+class Contributor(models.Model):
+    profile = models.ForeignKey('profile.Profile', verbose_name='Участник команды', on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, verbose_name='Команда участника', on_delete=models.CASCADE)
+    position = models.CharField(verbose_name='Должность', max_length=256)
+    is_creator = models.BooleanField(verbose_name='Является ли создателем команды')
+
+
 class Project(models.Model):
     name = models.CharField(verbose_name='Название проекта', max_length=256)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
