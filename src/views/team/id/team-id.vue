@@ -4,7 +4,6 @@
             <h1 class="team-id__name">
                 {{team.name}}
             </h1>
-
         </div>
         <div class="team-id__container">
             <h2 class="team-id__sub-title team-id__sub-title_mt-0">
@@ -31,7 +30,6 @@
                                 </svg>
                             </div>
                         </div>
-
                     </td>
                 </tr>
             </table>
@@ -64,18 +62,6 @@
                             </div>
 
                         </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="team-id__half-container">
-                <h2 class="team-id__sub-title team-id__sub-title_ta-right">
-                    Задачи команды <span class="team-id__plus" @click="tasksModule.toggleOpened(true)">+</span>
-                </h2>
-                <table class="team-id__contributors">
-                    <tr>
-                        <th>Название</th>
-                        <th>Исполнитель</th>
-                        <th>Действия</th>
                     </tr>
                 </table>
             </div>
@@ -125,9 +111,61 @@
             const route = useRoute();
             const router = useRouter();
 
-            const team = ref({});
-            const contributors = ref([]);
-            const projects = ref([]);
+            const team = ref({
+                count_of_contributors: 3,
+                creator: 1,
+                id: 2,
+                name: "ВКР",
+            });
+            const contributors = ref([{
+                id: 1,
+                is_creator: true,
+                position: "Владелец",
+                profile: {
+                    id: 1,
+                    first_name: "Ким",
+                    last_name: "Сергей",
+                    email: "sw1ple@mail.ru",
+                    profile_pic: null,
+                    teams: [2, 3],
+                    username: "scertyy",
+                },
+                team: 2,
+            }, {
+                id: 2,
+                is_creator: false,
+                position: "Участник",
+                profile: {
+                    id: 2,
+                    first_name: "Гей",
+                    last_name: "Сергей",
+                    email: "sw1ple@mail.ru",
+                    profile_pic: null,
+                    teams: [2, 3],
+                    username: "scertyy",
+                },
+                team: 2,
+            }, {
+                id: 3,
+                is_creator: false,
+                position: "Участник",
+                profile: {
+                    id: 3,
+                    first_name: "Не Гей",
+                    last_name: "Сергей",
+                    email: "sw1ple@mail.ru",
+                    profile_pic: null,
+                    teams: [2, 3],
+                    username: "scertyy",
+                },
+                team: 2,
+            }]);
+            const projects = ref([{
+                creator: 1,
+                id: 1,
+                name: "новый проект",
+                team: 2,
+            }]);
 
             const contributorsModule = reactive({
                 isOpenedAddContributor: false,
@@ -196,19 +234,18 @@
             }
 
             onMounted(() => {
-                getTeam(route.params.id)
-                    .then(r => {
-                        team.value = {...r}
-
-                    })
-                getTeamContributor(route.params.id)
-                    .then(r => {
-                        contributors.value = [...r]
-                    })
-                getTeamProjects(route.params.id)
-                    .then(r => {
-                        projects.value = [...r]
-                    })
+                // getTeam(route.params.id)
+                //     .then(r => {
+                //         team.value = {...r}
+                //     })
+                // getTeamContributor(route.params.id)
+                //     .then(r => {
+                //         contributors.value = [...r]
+                //     })
+                // getTeamProjects(route.params.id)
+                //     .then(r => {
+                //         projects.value = [...r]
+                //     })
 
             })
 
