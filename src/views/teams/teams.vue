@@ -26,7 +26,6 @@
             </router-link>
         </div>
 
-
         <teleport to="body">
             <ModalCreateTeam
                     v-if="modalCreateTeam.isOpened"

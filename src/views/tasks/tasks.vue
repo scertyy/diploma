@@ -24,7 +24,7 @@
                             @change="log"
                     >
                         <template #item="{ element, index }">
-                            <div class="tasks__item">{{ element.name }}</div>
+                            <div class="tasks__item" @click="modalEditTasksModule.toggleOpened(true)">{{ element.name }}</div>
                         </template>
                         <template #footer>
                             <div class="tasks__item tasks__item_create">Создать</div>
@@ -34,13 +34,21 @@
             </template>
         </draggable>
 
+        <teleport to="body">
+            <ModalEditTask
+                v-if="modalEditTasksModule.isOpened"
+            ></ModalEditTask>
+        </teleport>
+
     </div>
 </template>
 <script>
     import draggable from "vuedraggable";
     import {reactive, computed, ref} from 'vue'
+    import ModalEditTask from "../../components/Modals/ModalEditTask";
     export default {
         components: {
+            ModalEditTask,
             draggable
         },
         setup() {
@@ -79,11 +87,17 @@
                 console.log(id);
             }
 
+            const modalEditTasksModule = reactive({
+                isOpened: false,
+                toggleOpened: boolean => modalEditTasksModule.isOpened = boolean,
+            })
+
             return {
                 clone,
                 log,
                 boards: computed(() => boards.data),
                 openEditDashboard,
+                modalEditTasksModule,
             }
         },
     };
