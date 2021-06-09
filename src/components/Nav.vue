@@ -12,7 +12,7 @@
                           fill="#FFD15C"/>
                 </svg>
             </router-link>
-            <router-link class="nav__button" to="/team">
+            <router-link class="nav__button" to="/teams">
                 <svg width="29" height="22" viewBox="0 0 29 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.5859 9.72807C23.6595 9.72807 25.3417 8.04713 25.3417 5.97353C25.3417 3.89994 23.6595 2.21899 21.5859 2.21899"
                           stroke="#A7A7A7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-    import BaseLogo from './BaseLogo'
+    import BaseLogo from './Base/BaseLogo'
     export default {
         components: {
             BaseLogo

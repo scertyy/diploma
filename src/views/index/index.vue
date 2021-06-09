@@ -10,12 +10,23 @@
 </template>
 
 <script>
-    import BaseTaskCard from '../../components/BaseTaskCard';
+    import BaseTaskCard from '../../components/Base/BaseTaskCard';
+    import {useProfile} from "../../composition/useProfile";
+
+    import {onMounted} from 'vue';
     export default {
         components: {
             BaseTaskCard
         },
         setup() {
+
+            const {getProfile} = useProfile()
+
+            onMounted(() => {
+                getProfile()
+            })
+
+            return {}
 
         }
     }

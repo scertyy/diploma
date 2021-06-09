@@ -58,8 +58,8 @@
 <script>
     import {reactive, ref} from 'vue'
     import {useRouter} from 'vue-router'
-    import BaseButton from '../../components/BaseButton'
-    import BaseInput from '../../components/BaseInput'
+    import BaseButton from '../../components/Base/BaseButton'
+    import BaseInput from '../../components/Base/BaseInput'
     import {useAuth} from "../../composition/useAuth";
     export default {
         components: {

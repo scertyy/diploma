@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <Nav  v-if="route.name !== 'auth'"></Nav>
+    <Nav v-if="route.name !== 'auth'"></Nav>
     <div class="app__container" :class="{'app__container_full': route.name === 'auth'}">
       <TopNav v-if="route.name !== 'auth'"></TopNav>
       <div class="app__content" :class="{'app__content_full': route.name === 'auth'}">
@@ -12,16 +12,20 @@
 </template>
 
 <script>
-  import { useRoute } from 'vue-router'
-
   import Nav from './components/Nav'
   import TopNav from './components/TopNav'
+  import {useProfile} from "./composition/useProfile";
+  import { useRoute } from 'vue-router'
   export default {
     components: {
       Nav, TopNav
     },
     setup() {
       const route = useRoute()
+      const { getProfile } = useProfile()
+      if (localStorage.getItem('token_access')) {
+        getProfile()
+      }
       return {
         route,
       }

@@ -37,12 +37,16 @@
         }
         &.base-input_searching {
             padding: 18px 22px 18px 62px;
-            font-family: PT Root UI;
             font-style: normal;
             font-weight: bold;
             font-size: 18px;
             line-height: 23px;
             color: #A7A7A7;
+        }
+        &.base-input_modal {
+            background: #F1F1F1;
+            color: #252525;
+            padding: 8px 16px;
         }
     }
 </style>
