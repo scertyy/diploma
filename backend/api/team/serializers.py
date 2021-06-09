@@ -25,6 +25,8 @@ class TeamSerializer(serializers.ModelSerializer):
 
 
 class ContributorSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only=True)
+
     class Meta:
         model = Contributor
         fields = '__all__'
