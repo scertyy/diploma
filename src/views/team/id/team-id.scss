@@ -1,0 +1,185 @@
+.team-id {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.team-id__name {
+    margin: 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 57px;
+    line-height: 72px;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+    text-align: left;
+}
+.team-id__sub-title {
+    margin: 0 0 30px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    /* identical to box height */
+
+    color: #FFFFFF;
+    text-align: left;
+    &.team-id__sub-title_ta-right {
+        justify-content: flex-end;
+    }
+    &.team-id__sub-title_mt-0 {
+        margin: 0;
+        font-size: 32px;
+        padding: 0 20px;
+        align-self: flex-start;
+        margin-bottom: 20px !important;
+        display: flex;
+    }
+}
+.team-id__contributors {
+    width: 100%;
+    border-spacing: 0;
+    background: #303030;
+    padding: 10px;
+    border-radius: 12px 6px;
+    tr {
+        border: 1px solid #FFD15C;
+        box-sizing: border-box;
+    }
+    th {
+            font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 115%;
+        color: #FFFFFF;
+        padding: 4px 8px;
+        &:first-of-type {
+            text-align: left;
+        }
+        &:last-of-type {
+            text-align: right;
+        }
+    }
+
+    td {
+            font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 115%;
+        color: #FFFFFF;
+        padding: 4px 8px;
+        &:first-of-type {
+            color: #FFD15C;
+            text-align: left;
+        }
+        &:last-of-type {
+            text-align: right;
+        }
+    }
+}
+.team-id__pseudo-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.team-id__container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+.team-id__half-container {
+    width: 45%;
+}
+.team-id__actions-container {
+    width: 100%;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+.team-id__contributors-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #FFD15C;
+    border-radius: 12px 6px;
+    margin-right: 5px;
+
+    cursor: pointer;
+}
+
+.team-id__plus {
+    margin-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 36px;
+    border-radius: 18px;
+    font-size: 36px;
+    color: rgba(255, 209, 92, 0.93);
+    padding: 2px;
+    text-align: center;
+}
+.team-id__button-container {
+    margin-top: 50px;
+    width: 100%;
+    text-align: right;
+}
+
+// Ne Miel styles
+
+.team-team_id__projects_container{
+  height: 90%;
+  width: 70%;
+
+  .project_short__categories{
+    display: flex;
+    color: rgb(144, 144, 144);
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    .project_short__categories__name{
+      width: 25%;
+      padding: 0 0px 0 20px;
+    }
+
+    .project_short__categories__creator{
+      width: 15%;
+    }
+
+    .project_short__categories__actions{
+      width: 60%;
+      padding: 0 10px;
+    }
+  }
+
+  .team_id__projects{
+    height: 90%;
+    width: 100%;
+    border-radius: 20px;
+    padding: 20px 20px 40px;
+    background-color: #303030
+  }
+
+}
+
+.team-team_id__members{
+  width: 24%;
+  margin: 0 3%;
+
+  .team-team_id__members__container{
+    background-color: white;
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    padding: 20px
+  }
+}
