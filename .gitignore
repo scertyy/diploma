@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 sqlite3.db
+package-lock.json
 /dist/static
 /dist/favicon.ico
 /dist/index.html
