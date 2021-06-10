@@ -13,11 +13,11 @@
                 <div class="project_short__categories__actions">Actions</div>
               </div>
               <ProjectShort
-                v-for="one in ones"
-                :key="one.name"
-                :name="one.name"
-                :creator="one.creator"
-                :action="one.actions"
+                v-for="project_2 in projects_2"
+                :key="project_2.name"
+                :name="project_2.name"
+                :creator="project_2.creator"
+                :action="project_2.actions"
               ></ProjectShort>
             </div>
         </div>
@@ -119,16 +119,20 @@
           return {
             members: [
               {
-                name: "Роман Романович",
+                name: "Роман Хмелев",
                 photo: 'roman'
               },
               {
-                name: "Кирилл Кириллович",
+                name: "Кирилл Козырев",
                 photo: 'kirill'
+              },
+              {
+                name: "Сергей Ким",
+                photo: 'sergei'
               }
             ],
-            // Ones — список проектов, projects уже было занято
-            ones: [
+            // projects_2 — список проектов, projects уже было занято
+            projects_2: [
               {
                 name: "Пупа и Лупа",
                 creator: {
@@ -136,7 +140,7 @@
                   photo: "roman",
                 },
                 actions: {
-                  author: 'roman',
+                  author: 'kirill',
                   comment: 'Пришёл в бухгалтерию'
                 }
               },
@@ -154,11 +158,11 @@
               {
                 name: "Диплом",
                 creator: {
-                  name: "Роман",
-                  photo: "roman",
+                  name: "Сергей",
+                  photo: "sergei",
                 },
                 actions: {
-                  author: 'roman',
+                  author: 'sergei',
                   comment: 'Получил 5'
                 }
               }

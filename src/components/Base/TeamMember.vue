@@ -15,6 +15,7 @@
     margin: 10px 0;
     position: relative;
     font-size: 20px;
+    color: black;
 
     .team_member__photo{
       margin-right: 10px;

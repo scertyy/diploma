@@ -67,7 +67,7 @@
         margin: 0;
         text-align: left;
 
-        font-family: PT Root UI;
+        // font-family: PT Root UI;
         font-style: normal;
         font-weight: bold;
         font-size: 36px;
@@ -95,7 +95,7 @@
         align-items: center;
     }
     .top-nav__name {
-        font-family: PT Root UI;
+        // font-family: PT Root UI;
         font-style: normal;
         font-weight: bold;
         font-size: 18px;

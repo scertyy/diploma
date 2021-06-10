@@ -163,7 +163,7 @@
         margin: auto 0 auto 15px;
     }
     .modal-search-profiles__name {
-        font-family: PT Root UI;
+        // font-family: PT Root UI;
         font-style: normal;
         font-weight: normal;
         font-size: 22px;

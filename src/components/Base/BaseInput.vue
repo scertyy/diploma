@@ -23,9 +23,8 @@
         width: 100%;
         background: #303030;
         border-radius: 4.87805px;
-        font-family: PT Root UI;
+        // font-family: PT Root UI;
         font-style: normal;
-        font-weight: bold;
         font-size: 20px;
         line-height: 25px;
 
@@ -44,7 +43,7 @@
             color: #A7A7A7;
         }
         &.base-input_modal {
-            background: #F1F1F1;
+            background: white;
             color: #252525;
             padding: 8px 16px;
         }

@@ -141,7 +141,7 @@
     }
     .auth__h1 {
         width: 100%;
-        font-family: PT Root UI;
+        // font-family: PT Root UI;
         font-style: normal;
         font-weight: bold;
         font-size: 57px;
@@ -167,7 +167,7 @@
         justify-content: center;
     }
     .auth__switch {
-        font-family: PT Root UI;
+        // font-family: PT Root UI;
         font-style: normal;
         font-weight: 500;
         font-size: 20px;
@@ -182,7 +182,7 @@
     }
     .auth__success-message {
         margin: 30px 0 5px;
-        font-family: PT Root UI;
+        // font-family: PT Root UI;
         font-style: normal;
         font-weight: normal;
         font-size: 22px;

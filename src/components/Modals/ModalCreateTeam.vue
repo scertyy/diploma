@@ -5,9 +5,11 @@
                 Создать команду
             </BaseModalHeader>
             <div class="modal-create-team__input-container">
-                <BaseInput class="base-input_modal" v-model="name" placeholder="Имя"></BaseInput>
+                <BaseInput class="base-input_modal" v-model="name" placeholder="Название"></BaseInput>
             </div>
 
+            <BaseTeamMembersShort class="team_members_short__modal"></BaseTeamMembersShort>
+            <BaseCardProjects class="card__projects__modal"></BaseCardProjects>
 
             <div class="modal-create-team__buttons">
                 <BaseButton
@@ -30,11 +32,13 @@
 <script>
     import BaseButton from '../Base/BaseButton.vue'
     import BaseInput from '../Base/BaseInput.vue'
+    import BaseTeamMembersShort from '../Base/BaseTeamMembersShort.vue'
     import BaseModalHeader from '../Base/BaseModalHeader.vue'
+    import BaseCardProjects from '../Base/BaseCardProjects.vue'
 
     import {ref} from 'vue';
     export default {
-        components: { BaseButton, BaseModalHeader, BaseInput },
+        components: { BaseButton, BaseModalHeader, BaseInput, BaseTeamMembersShort, BaseCardProjects },
         setup(props, {emit}) {
             const close = () => {
                 emit('close')
@@ -55,9 +59,11 @@
 
 <style lang="scss">
     .modal-create-team {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
         width: 100vw;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.34);
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(2px);
         position: absolute;
         left: 0;
         top: 0;
@@ -71,10 +77,11 @@
         }
     }
     .modal-create-team__body {
-        width: 364px;
+        width: 600px;
+        height: 500px;
         background: #303030;
         border-radius: 9px;
-        padding: 20px 0;
+        padding: 30px 20px;
         text-align: left;
     }
     .modal-create-team__buttons {
