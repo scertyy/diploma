@@ -73,6 +73,24 @@
       }
     }
   }
+
+  .team_members_short__edit_task_modal {
+
+    .team_members_short__members_head{
+      color: white;
+      font-size: 22px;
+      text-align: left;
+      margin: 0;
+      display: none;
+    }
+
+    .team_members_short__members__photos{
+      .team_members_short__member_add{
+        display: block;
+        margin: 0 10px;
+      }
+    }
+  }
 </style>
 
 <script type="text/javascript">

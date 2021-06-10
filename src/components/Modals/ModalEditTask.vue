@@ -1,24 +1,21 @@
 <template>
-    <div class="modal-edit-task" @mousedown.self="close">
-        <div class="modal-edit-task__body">
-            <BaseModalHeader>
-                ЭДИТ ТАСК
-            </BaseModalHeader>
-            <div class="modal-edit-task__input-container">
-                <BaseInput class="base-input_modal" v-model="name" placeholder="Описание задачи"></BaseInput>
+    <div class="modal_edit_task" @mousedown.self="close">
+        <div class="modal_edit_task__body">
+
+            <div contenteditable class="modal_edit_task__contenteditable" name="name" rows="1" cols="30">Покормить рыбок</div>
+
+            <div contenteditable class="modal_edit_task__discription">
+              Покормить кормом из красной коробочки с белой этикеточкой. Не перепутать с белой коробочкой с красной крышечкой! В ней яд для тараканов.
             </div>
-            <div class="modal-edit-task__buttons">
-                <BaseButton
-                        class="base-button_small"
-                        @click="save"
-                >
-                    Создать
-                </BaseButton>
+
+
+            <div class="modal_edit_task__buttons">
+              <BaseTeamMembersShort :members="members" class="team_members_short__edit_task_modal"></BaseTeamMembersShort>
                 <BaseButton
                         class="base-button_small base-button_cancel"
-                        @click.self="close"
+                        @click.self="save"
                 >
-                    Отмена
+                    Закрыть
                 </BaseButton>
             </div>
         </div>
@@ -27,12 +24,31 @@
 
 <script>
     import BaseButton from '../Base/BaseButton.vue'
+    import BaseTeamMembersShort from '../Base/BaseTeamMembersShort.vue'
     import BaseInput from '../Base/BaseInput.vue'
     import BaseModalHeader from '../Base/BaseModalHeader.vue'
 
     import {ref} from 'vue';
     export default {
-        components: { BaseButton, BaseModalHeader, BaseInput },
+        components: { BaseButton, BaseModalHeader, BaseTeamMembersShort, BaseInput },
+        data(){
+          return {
+            members: [
+              {
+                name: "Роман Хмелев",
+                photo: 'roman'
+              },
+              {
+                name: "Кирилл Козырев",
+                photo: 'kirill'
+              },
+              {
+                name: "Сергей Ким",
+                photo: 'sergei'
+              }
+            ]
+          }
+        },
         setup(props, {emit}) {
             const close = () => {
                 emit('close')
@@ -52,13 +68,16 @@
 </script>
 
 <style lang="scss">
-    .modal-edit-task {
+    .modal_edit_task {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
         width: 100vw;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.34);
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(2px);
         position: absolute;
         left: 0;
         top: 0;
+        color: white;
         z-index: 1300;
         display: flex;
         align-items: center;
@@ -68,21 +87,47 @@
             z-index: 1400;
         }
     }
-    .modal-edit-task__body {
-        width: 364px;
+    .modal_edit_task__body {
+        width: 800px;
         background: #303030;
         border-radius: 9px;
-        padding: 20px 0;
+        padding: 20px;
         text-align: left;
     }
-    .modal-edit-task__buttons {
-        padding: 0 20px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 45px;
+
+    .modal_edit_task__contenteditable{
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-size: 32px;
+      font-weight: bold;
+      background-color: transparent;
+
+      &:focus{
+        outline: none;
+        border: none;
+      }
+
     }
-    .modal-edit-task__input-container {
+
+    .modal_edit_task__discription{
+      color: rgb(218, 218, 218);
+      margin-top: 20px;
+      height: 200px;
+
+      &:focus{
+        outline: none;
+        border: none;
+      }
+    }
+
+    .modal_edit_task__buttons {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 45px;
+        align-items: center;
+    }
+    .modal_edit_task__input-container {
         margin-top: 30px;
         padding: 0 20px;
     }
