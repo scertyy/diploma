@@ -3,12 +3,10 @@ from django.db import models
 
 class Team(models.Model):
     name = models.CharField(verbose_name='Название команды', max_length=256)
-    avatar = models.ImageField(null=True, upload_to='team_avatars', default='team_avatars/no_img.png')
-    description = models.TextField(verbose_name='Описание команды')
+    avatar = models.ImageField(null=True, upload_to='team_avatars', default='team_avatars/no_img.jpg')
+    description = models.TextField(verbose_name='Описание команды', null=True)
     is_self = models.BooleanField(verbose_name='Единичная псевдокоманда для привязки Board к профилю', default=False)
     parent = models.ForeignKey('self', verbose_name='Подкоманда', related_name='sub_teams', null=True, on_delete=models.CASCADE)
-
-# ToDo: При создании команды, создается 4 Board привязанных к ней с именами Резерв, К выполнению, В работе, Завершено
 
 
 class Position(models.Model):

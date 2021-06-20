@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from backend.api.profile.models import Profile
 from backend.api.team.models import Team, Contributor
 from backend.api.team.services.serializers_utils import add_team_to_profile
 
@@ -18,9 +17,7 @@ class SubTeamSerializer(serializers.ModelSerializer):
 
 
 class TeamSerializer(serializers.ModelSerializer):
-    count_of_contributors = serializers.SerializerMethodField('get_count_of_contributors')
     contributors = ContributorSerializer(many=True, read_only=True)
-    sub_teams = SubTeamSerializer(many=True, read_only=True)
 
     class Meta:
         model = Team
@@ -30,7 +27,4 @@ class TeamSerializer(serializers.ModelSerializer):
         """
         Переопределяем создание команды для добавления команды в профиль создателя
         """
-        return add_team_to_profile(validated_data)
-
-    def get_count_of_contributors(self, obj):
-        return Profile.objects.filter(teams__in=[obj.id, ]).count()
+        return add_team_to_profile(validated_data, self.context.get('request').user)

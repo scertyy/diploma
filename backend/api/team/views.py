@@ -14,6 +14,7 @@ class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
     permission_classes = (permissions.IsAuthenticated, )
 
+    # ToDo: ПЕРЕПИСАТЬ
     @action(detail=False, methods=['post'], permission_classes=(permissions.IsAuthenticated, ))
     def add_contributor_to_team(self, request):
         """
