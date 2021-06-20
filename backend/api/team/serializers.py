@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from backend.api.profile.models import Profile
 from backend.api.profile.serializers import ProfileSerializer
-from backend.api.team.models import Team, Project, Contributor
+from backend.api.team.models import Team, Contributor
 from backend.api.team.services.serializers_utils import add_team_to_profile
 
 
@@ -29,10 +29,4 @@ class ContributorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Contributor
-        fields = '__all__'
-
-
-class ProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Project
         fields = '__all__'

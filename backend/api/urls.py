@@ -8,7 +8,7 @@ from rest_framework_simplejwt.views import (
 
 from backend.api.board.views import BoardViewSet, TaskViewSet, CommentViewSet
 from backend.api.profile.views import RegisterApi, ProfileViewSet
-from backend.api.team.views import TeamViewSet, ProjectViewSet, ContributorViewSet
+from backend.api.team.views import TeamViewSet, ContributorViewSet
 
 router = routers.DefaultRouter()
 # Profile
@@ -16,7 +16,6 @@ router.register('profile', ProfileViewSet)
 # Team
 router.register('team', TeamViewSet)
 router.register('contributor', ContributorViewSet)
-router.register('project', ProjectViewSet)
 # Board
 router.register('board', BoardViewSet)
 router.register('task', TaskViewSet)

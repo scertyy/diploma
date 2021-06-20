@@ -14,8 +14,11 @@ class Profile(AbstractUser):
         max_length=255, blank=False, null=False, unique=True)
     first_name = models.CharField(max_length=255, blank=False, null=False)
     last_name = models.CharField(max_length=255, blank=False, null=False)
-    profile_pic = models.ImageField(blank=True, upload_to='profile_pics')
-    teams = models.ManyToManyField(Team, verbose_name='Команды профиля', blank=True)
+    avatar = models.ImageField(blank=True, upload_to='profile_avatars', default='profile_avatars/no_img.jpg')
+    teams = models.ManyToManyField(Team, verbose_name='Команды профиля')
+    level = models.PositiveIntegerField(verbose_name='Уровень профиля', default=1)
+    experience = models.PositiveIntegerField(verbose_name='Количество опыта в текущем уровне', default=0)
+    experience_in_level = models.PositiveIntegerField(verbose_name='Количество опыта в уровне', default=1000)
 
     def __str__(self):
         return f'Профиль пользователя {self.username}'

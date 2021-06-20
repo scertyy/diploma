@@ -1,12 +1,20 @@
 from backend.api.profile.models import Profile
+from backend.api.team.models import Team, Position, Contributor
 
 
 def create_profile(validated_data):
+    self_team = Team.objects.create(name='Мои задачи',
+                                    avatar=None,
+                                    is_self=True,
+                                    parent=None)
     profile = Profile.objects.create_user(username=validated_data['username'],
-                                       email=validated_data['email'],
-                                       password=validated_data['password'],
-                                       first_name=validated_data['first_name'],
-                                       last_name=validated_data['last_name'])
+                                          email=validated_data['email'],
+                                          password=validated_data['password'],
+                                          first_name=validated_data['first_name'],
+                                          last_name=validated_data['last_name'])
+    profile.teams.add(self_team)
+    position = Position.objects.create(name='Владелец', position=1)
+    Contributor.objects.create(profile=profile, team=self_team, position=position)
     return profile
 
 

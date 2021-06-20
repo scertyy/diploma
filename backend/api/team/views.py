@@ -4,8 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from backend.api.profile.models import Profile
-from backend.api.team.models import Team, Project, Contributor
-from backend.api.team.serializers import TeamSerializer, ProjectSerializer, ContributorSerializer
+from backend.api.team.models import Team, Contributor
+from backend.api.team.serializers import TeamSerializer, ContributorSerializer
 from backend.api.team.services.views_utils import get_team_and_user_data
 
 
@@ -53,13 +53,6 @@ class TeamViewSet(viewsets.ModelViewSet):
         contributor = Contributor.objects.get(profile=profile, team=team, is_creator=False)
         contributor.delete()
         return Response({'success': 'Пользователь удален из команды'})
-
-
-class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
-    filter_backends = (DjangoFilterBackend, )
-    filterset_fields = ['team']
 
 
 class ContributorViewSet(viewsets.ModelViewSet):
