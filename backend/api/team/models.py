@@ -5,8 +5,8 @@ class Team(models.Model):
     name = models.CharField(verbose_name='Название команды', max_length=256)
     avatar = models.ImageField(null=True, upload_to='team_avatars', default='team_avatars/no_img.png')
     description = models.TextField(verbose_name='Описание команды')
-    is_self = models.BooleanField(verbose_name='Единичная псевдокоманда для привязки Board к профилю')
-    parent = models.ForeignKey('self', verbose_name='Подкоманда', null=True, on_delete=models.CASCADE)
+    is_self = models.BooleanField(verbose_name='Единичная псевдокоманда для привязки Board к профилю', default=False)
+    parent = models.ForeignKey('self', verbose_name='Подкоманда', related_name='sub_teams', null=True, on_delete=models.CASCADE)
 
 # ToDo: При создании команды, создается 4 Board привязанных к ней с именами Резерв, К выполнению, В работе, Завершено
 
@@ -25,5 +25,6 @@ class Position(models.Model):
 
 class Contributor(models.Model):
     profile = models.ForeignKey('profile.Profile', verbose_name='Участник команды', on_delete=models.CASCADE)
-    team = models.ForeignKey(Team, verbose_name='Команда участника', on_delete=models.CASCADE, null=True)
+    team = models.ForeignKey(Team, verbose_name='Команда участника', related_name='contributors',
+                             on_delete=models.CASCADE, null=True)
     position = models.ForeignKey(Position, verbose_name='Должность', on_delete=models.CASCADE)

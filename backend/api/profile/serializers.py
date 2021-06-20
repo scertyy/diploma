@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from backend.api.profile.models import Profile
 from backend.api.profile.services.serializers_utils import create_profile, add_instances_to_multiple_fields
+from backend.api.team.serializers import TeamSerializer
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -19,9 +20,12 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    teams = TeamSerializer(many=True, read_only=True)
+
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'profile_pic', 'teams']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'avatar', 'teams']
+        depth = 1
 
     def update(self, instance, validated_data):
         """
