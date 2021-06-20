@@ -1,10 +1,11 @@
 .index {
     width: 100%;
-    height: 100%;
+    max-height: calc(100% - 50px);
     padding: 50px 35px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    overflow-y: auto;
 }
 
 .index__tasks-row {
@@ -15,104 +16,4 @@
     margin-bottom: 50px;
 }
 
-.index__left_block{
-  width: 322px;
-  color: white;
 
-  .index__left_block__heading{
-    font-size: 22px;
-    font-weight: bold;
-    margin: 0px 0 24px;
-    text-align: left;
-
-    &:nth-of-type(n + 2){
-      margin: 31px 0 24px;
-    }
-  }
-
-  .index__left_block__colleagues{
-    color: white;
-    width: 322px;
-    height: 180px;
-
-    display: flex;
-    flex-wrap: wrap;
-
-  .index__left_block__colleagues__colleague{
-    padding-right: 27px;
-    padding-bottom: 9px;
-
-    .colleague_photo__online{
-      margin-bottom: 10px;
-
-      &:after{
-        content: '';
-        display: block;
-        height: 15px;
-        width: 15px;
-        background-color: #4CCE59;
-        border-radius: 50%;
-        position: absolute;
-        bottom: -3px;
-        right: 0;
-        border: 3px solid #252525;
-          }
-      }
-    }
-
-    .index__left_block__colleagues__colleague:nth-of-type(4n){
-      padding-right: 0px;
-    }
-  }
-
-  .recent_feed__feed{
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 293px;
-    margin-bottom: 14px;
-
-    .feed__text_block{
-      display: flex;
-      flex-wrap: wrap;
-      font-size: 18px;
-      line-height: 120%;
-      height: 90%;
-      width: 217px;
-    }
-
-    .feed_name{
-      color: #A7A7A7;
-      font-weight: bold;
-    }
-
-    .feed_time{
-      color: #A7A7A7;
-      position: relative;
-      margin-left: 8px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-
-      &:before{
-        content: '';
-        display: block;
-        height: 3px;
-        width: 3px;
-        background-color: #A7A7A7;
-        border-radius: 50%;
-        position: absolute;
-        left: -4px;
-      }
-    }
-  }
-}
-
-.circles{
-  width: 725px;
-  margin: 0 72px;
-  display: flex;
-  justify-content: space-between;
-}

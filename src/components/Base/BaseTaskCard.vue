@@ -7,8 +7,8 @@
       </div>
 
       <div class="base-task-card__bottom">
-        <div v-if="today" class="base-task-card__bottom__today">{{today}} today</div>
-        <div v-if="last_week" class="base-task-card__bottom__last_week">{{last_week}} last week</div>
+        <div v-if="today" class="base-task-card__bottom__today">{{today}} сегодня</div>
+        <div v-if="last_week" class="base-task-card__bottom__last_week">{{last_week}} за последнюю неделю</div>
       </div>
 
     </div>

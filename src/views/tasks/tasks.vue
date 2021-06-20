@@ -44,14 +44,18 @@
 </template>
 <script>
     import draggable from "vuedraggable";
-    import {reactive, computed, ref} from 'vue'
+    import {reactive, computed, onMounted} from 'vue'
     import ModalEditTask from "../../components/Modals/ModalEditTask";
+    import {useRouteName} from "../../composition/useRouteName";
     export default {
         components: {
             ModalEditTask,
             draggable
         },
         setup() {
+
+            const { routeName } = useRouteName()
+
             const boards = reactive({
                 data: [
                 {
@@ -90,6 +94,10 @@
             const modalEditTasksModule = reactive({
                 isOpened: false,
                 toggleOpened: boolean => modalEditTasksModule.isOpened = boolean,
+            })
+
+            onMounted(() => {
+                routeName.value = 'Мои задачи'
             })
 
             return {

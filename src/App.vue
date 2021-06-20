@@ -35,6 +35,16 @@
 
 <style lang="scss">
 
+  ::-webkit-scrollbar {
+    width: 8px; /* ширина для вертикального скролла */
+    height: 8px; /* высота для горизонтального скролла */
+    background-color: #303030;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #FFD15C;
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
+  }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -1,6 +1,6 @@
 <template>
     <div class="top-nav">
-        <h1 class="top-nav__title">{{route.meta.header}}</h1>
+        <h1 class="top-nav__title">{{routeName}}</h1>
         <div class="top-nav__input-container">
             <BaseInput class="base-input_searching" placeholder="Поиск"></BaseInput>
             <svg class="top-nav__search-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,7 +16,7 @@
                     <path d="M19.352 5.17V3.94L20.752 3H21.952V10H20.752V4.24L19.352 5.17Z" fill="white"/>
                 </svg>
             </div>
-            <BaseCircleIcon :src="image"></BaseCircleIcon>
+            <BaseCircleIcon :src="profile.avatar"></BaseCircleIcon>
             <div class="top-nav__name">
                 {{name}}
             </div>
@@ -27,25 +27,24 @@
 
 <script>
     import BaseInput from "./Base/BaseInput";
-    import {useRoute} from 'vue-router'
     import {useProfile} from "../composition/useProfile";
     import {computed} from 'vue';
     import BaseCircleIcon from "./Base/BaseCircleIcon";
+    import {useRouteName} from "../composition/useRouteName";
     export default {
         components: {
             BaseCircleIcon,
             BaseInput
         },
         setup() {
-            const route = useRoute();
             const {profile} = useProfile()
+            const {routeName} = useRouteName()
 
 
             return {
-                route,
-                name: computed(() => profile.value.first_name? `${profile.value.first_name} ${profile.value.last_name}` : ''),
-                image: computed(() => profile.value.image),
+                name: computed(() => profile.value.first_name? `${profile.value.last_name} ${profile.value.first_name}` : ''),
                 profile,
+                routeName,
             }
         }
     }
@@ -93,6 +92,9 @@
         margin-left: auto;
         display: flex;
         align-items: center;
+    }
+    .top-nav__notifications-button {
+        margin-right: 18px;
     }
     .top-nav__name {
         // font-family: PT Root UI;
