@@ -24,7 +24,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'avatar', 'teams']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'avatar', 'teams', 'level', 'experience', 'experience_in_level']
         depth = 1
 
     def update(self, instance, validated_data):
