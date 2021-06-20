@@ -21,7 +21,7 @@ class Board(models.Model):
 
 
 class Task(models.Model):
-    board = models.ForeignKey(Board, verbose_name='Доска задачи', on_delete=models.CASCADE)
+    board = models.ForeignKey(Board, verbose_name='Доска задачи', related_name='tasks', on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Название задачи', max_length=256)
     text = models.TextField(verbose_name='Текст задачи')
     color = models.CharField(verbose_name='Цвет задачи', max_length=256)

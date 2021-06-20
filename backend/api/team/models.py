@@ -7,6 +7,7 @@ class Team(models.Model):
                                 related_name='parent', null=True, blank=True)
     contributors = models.ManyToManyField('profile.Profile', related_name='children',
                                           verbose_name='Список участников команды', blank=True)
+# ToDo: При создании команды, создается 4 Board привязанных к ней с именами Резерв, К выполнению, В работе, Завершено
 
 
 class Contributor(models.Model):

@@ -3,16 +3,18 @@ from rest_framework import serializers
 from backend.api.board.models import Board, Task, Comment
 
 
-class BoardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Board
-        fields = '__all__'
-
-
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+
+
+class BoardSerializer(serializers.ModelSerializer):
+    tasks = TaskSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Board
+        fields = ['id', 'title', 'position', 'project', 'tasks']
 
 
 class CommentSerializer(serializers.ModelSerializer):

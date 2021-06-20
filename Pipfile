@@ -16,6 +16,8 @@ whitenoise = "==5.2.0"
 Django = "==3.1.12"
 Pillow = "==8.1.2"
 djangorestframework-simplejwt = "*"
+channels = "*"
+channels-redis = "*"
 
 [dev-packages]
 
