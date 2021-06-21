@@ -17,7 +17,7 @@ class TeamViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         self.perform_destroy(instance)
-        return Response({'success': 'deleted'}, status=status.HTTP_204_NO_CONTENT)
+        return Response(data={'success': 'deleted'})
 
     # ToDo: ПЕРЕПИСАТЬ
     @action(detail=False, methods=['post'], permission_classes=(permissions.IsAuthenticated, ))
