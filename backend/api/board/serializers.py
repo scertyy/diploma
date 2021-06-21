@@ -14,7 +14,7 @@ class BoardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Board
-        fields = ['id', 'title', 'position', 'project', 'tasks']
+        fields = ['id', 'title', 'priority', 'team', 'tasks']
 
 
 class CommentSerializer(serializers.ModelSerializer):

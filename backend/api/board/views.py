@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
 from backend.api.board.models import Board, Task, Comment
@@ -7,6 +8,8 @@ from backend.api.board.serializers import BoardSerializer, TaskSerializer, Comme
 class BoardViewSet(viewsets.ModelViewSet):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
+    filter_backends = (DjangoFilterBackend, )
+    filterset_fields = ['team']
 
 
 class TaskViewSet(viewsets.ModelViewSet):
