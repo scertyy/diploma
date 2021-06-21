@@ -11,13 +11,13 @@ def add_team_to_profile(validated_data, user):
         team.parent = validated_data['parent']
     team.save()
     if validated_data.get('contributors_for_create'):
-        position, new = Position.objects.get_or_create(name='Участник', position=5)
+        position = Position.objects.create(name='Участник', position=5)
         for contributor in validated_data['contributors_for_create']:
             Contributor.objects.create(team=team, profile_id=contributor, position=position)
     profile = Profile.objects.get(id=user.id)
     profile.teams.add(team)
     profile.save()
-    position, new = Position.objects.get_or_create(name='Владелец', position=1)
+    position = Position.objects.create(name='Владелец', position=1)
     Contributor.objects.create(team=team, profile=profile, position=position)
     Board.objects.create(team=team, title='Резерв')
     Board.objects.create(team=team, title='План')
