@@ -18,6 +18,9 @@ Pillow = "==8.1.2"
 djangorestframework-simplejwt = "*"
 channels = "*"
 channels-redis = "*"
+django-extensions = "*"
+pyparsing = "*"
+pydot = "*"
 
 [dev-packages]
 

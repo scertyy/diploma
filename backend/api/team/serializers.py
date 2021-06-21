@@ -1,10 +1,26 @@
 from rest_framework import serializers
 
-from backend.api.team.models import Team, Contributor
+from backend.api.profile.models import Profile
+from backend.api.team.models import Team, Contributor, Position
 from backend.api.team.services.serializers_utils import add_team_to_profile
 
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'avatar', 'level', 'experience', 'experience_in_level']
+
+
+class PositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Position
+        fields = '__all__'
+
+
 class ContributorSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer()
+    position = PositionSerializer()
+
     class Meta:
         model = Contributor
         fields = '__all__'
@@ -18,6 +34,8 @@ class SubTeamSerializer(serializers.ModelSerializer):
 
 class TeamSerializer(serializers.ModelSerializer):
     contributors = ContributorSerializer(many=True, read_only=True)
+    sub_teams = SubTeamSerializer(many=True, read_only=True)
+    contributors_for_create = serializers.ListField(write_only=True, required=False)
 
     class Meta:
         model = Team

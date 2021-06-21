@@ -13,7 +13,7 @@ def create_profile(validated_data):
                                           first_name=validated_data['first_name'],
                                           last_name=validated_data['last_name'])
     profile.teams.add(self_team)
-    position = Position.objects.create(name='Владелец', position=1)
+    position, new = Position.objects.get_or_create(name='Владелец', position=1)
     Contributor.objects.create(profile=profile, team=self_team, position=position)
     return profile
 

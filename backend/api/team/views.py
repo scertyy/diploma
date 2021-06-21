@@ -11,7 +11,7 @@ from backend.api.team.services.views_utils import get_team_and_user_data
 
 class TeamViewSet(viewsets.ModelViewSet):
     serializer_class = TeamSerializer
-    queryset = Team.objects.all()
+    queryset = Team.objects.filter(parent=None)
     permission_classes = (permissions.IsAuthenticated, )
 
     # ToDo: ПЕРЕПИСАТЬ
