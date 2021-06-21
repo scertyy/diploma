@@ -4,8 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from backend.api.profile.models import Profile
-from backend.api.team.models import Team, Contributor
-from backend.api.team.serializers import TeamSerializer, ContributorSerializer
+from backend.api.team.models import Team, Contributor, Position
+from backend.api.team.serializers import TeamSerializer, ContributorSerializer, PositionSerializer
 from backend.api.team.services.views_utils import get_team_and_user_data
 
 
@@ -61,3 +61,8 @@ class ContributorViewSet(viewsets.ModelViewSet):
     serializer_class = ContributorSerializer
     filter_backends = (DjangoFilterBackend, )
     filterset_fields = ['team']
+
+
+class PositionViewSet(viewsets.ModelViewSet):
+    queryset = Position.objects.all()
+    serializer_class = PositionSerializer
