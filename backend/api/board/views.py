@@ -15,6 +15,8 @@ class BoardViewSet(viewsets.ModelViewSet):
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    filter_backends = (DjangoFilterBackend, )
+    filterset_fields = ['contributor']
 
 
 class CommentViewSet(viewsets.ModelViewSet):
