@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, viewsets, permissions, filters
@@ -6,6 +8,8 @@ from rest_framework.response import Response
 
 from .models import Profile
 from .serializers import RegisterSerializer, ProfileSerializer
+from ..board.models import Task
+from ..team.models import Contributor
 
 
 class RegisterApi(generics.GenericAPIView):
@@ -40,3 +44,14 @@ class ProfileViewSet(viewsets.ModelViewSet):
     def get_current_profile(self, request):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
+
+    @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
+    def get_profile_statistics(self, request):
+        profile = request.user
+        teams = profile.teams.all().filter(is_self=False)
+        all_profile_contributors = Contributor.objects.filter(profile=profile, team__in=teams)
+        plan = Task.objects.filter(contributor__in=all_profile_contributors, board__title='План').count()
+        doing = Task.objects.filter(contributor__in=all_profile_contributors, board__title='В работе').count()
+        deadline = Task.objects.filter(contributor__in=all_profile_contributors, deadline__date=datetime.today()).count()
+        done = Task.objects.filter(contributor__in=all_profile_contributors, board__title='Завершено').count()
+        return Response(data={'plan': plan, 'doing': doing, 'deadline': deadline, 'done': done})
