@@ -11,8 +11,8 @@ def add_team_to_profile(validated_data, user):
         team.parent = validated_data['parent']
     team.save()
     if validated_data.get('contributors_for_create'):
-        position = Position.objects.create(name='Участник', position=5)
         for contributor in validated_data['contributors_for_create']:
+            position = Position.objects.create(name='Участник', position=5)
             Contributor.objects.create(team=team, profile_id=contributor, position=position)
     profile = Profile.objects.get(id=user.id)
     profile.teams.add(team)
