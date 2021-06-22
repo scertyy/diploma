@@ -7,9 +7,10 @@ const profile = ref({})
 export function useProfile() {
 
     const getProfile = async () => {
-        profileActions.getProfile()
+        return await profileActions.getProfile()
             .then(r => {
                 profile.value = r;
+                return r;
             })
     }
     const searchProfiles = async (str) => {

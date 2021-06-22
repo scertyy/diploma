@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" v-if="!loading">
     <Nav v-if="route.name !== 'auth'"></Nav>
     <div class="app__container" :class="{'app__container_full': route.name === 'auth'}">
       <TopNav v-if="route.name !== 'auth'"></TopNav>
@@ -16,6 +16,7 @@
   import TopNav from './components/TopNav'
   import {useProfile} from "./composition/useProfile";
   import { useRoute } from 'vue-router'
+  import {ref} from 'vue'
   export default {
     components: {
       Nav, TopNav
@@ -23,11 +24,17 @@
     setup() {
       const route = useRoute()
       const { getProfile } = useProfile()
+      const loading = ref(true);
       if (localStorage.getItem('token_access')) {
         getProfile()
+          .then(r => {
+              console.log(r);
+              loading.value = false;
+          })
       }
       return {
         route,
+        loading
       }
     }
   }

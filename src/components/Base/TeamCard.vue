@@ -1,11 +1,14 @@
 <template>
-  <div class="team-card">
+  <div class="team-card" >
+    <div class="team-card__opacity-color" :style="team.avatar ? {
+      'background': `url(${team.avatar}) center center / cover no-repeat`
+  } : {  }"></div>
+    <div class="team-card__container">
+      <router-link :to="`/team/${team.id}`" class="team-card__name">{{team.name}}</router-link>
+      <BaseCardProjects :projects="team.sub_teams"></BaseCardProjects>
 
-    <h2 class="team-card__name">{{name}}</h2>
-
-    <BaseCardProjects :projects="projects"></BaseCardProjects>
-    <BaseTeamMembersShort :members="members"></BaseTeamMembersShort>
-
+      <BaseTeamMembersShort :members="team.contributors"></BaseTeamMembersShort>
+    </div>
 
   </div>
 </template>
@@ -20,7 +23,15 @@
       BaseTeamMembersShort,
       BaseCardProjects
     },
-    props: ['members', 'name', 'projects']
+    props: {
+      team: Object
+    },
+    setup(props) {
+
+      return {
+        team: props.team
+      }
+    }
   }
 </script>
 
@@ -34,6 +45,7 @@
     border-radius: 48px 24px;
     padding: 30px 20px;
     margin: 20px;
+    position: relative;
 
     display: flex;
     justify-content: space-between;
@@ -45,8 +57,26 @@
       font-size: 32px;
       text-align: left;
       margin: 0;
+      text-decoration: none;
     }
 
+  }
+  .team-card__opacity-color {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    left: 0;
+    top: 0;
+    border-radius: 48px 24px;
+    z-index: 0;
+  }
+  .team-card__container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: transparent;
+    text-align: left;
   }
 </style>
 

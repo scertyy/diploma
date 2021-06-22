@@ -10,9 +10,6 @@
             <BaseTaskCard class="base-task-card_green" total_number="113" today="44" last_week="7" status="Выполнено"></BaseTaskCard>
         </div>
 
-
-
-
     </div>
 </template>
 

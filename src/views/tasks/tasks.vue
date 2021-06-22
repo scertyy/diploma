@@ -32,6 +32,11 @@
                     </draggable>
                 </div>
             </template>
+            <template #footer>
+                <div class="tasks__column tasks__column_create">
+                    +
+                </div>
+            </template>
         </draggable>
 
         <teleport to="body">
@@ -47,14 +52,17 @@
     import {reactive, computed, onMounted} from 'vue'
     import ModalEditTask from "../../components/Modals/ModalEditTask";
     import {useRouteName} from "../../composition/useRouteName";
+    import {useBoard} from "../../composition/useBoards";
+    import {useProfile} from "../../composition/useProfile";
     export default {
         components: {
             ModalEditTask,
             draggable
         },
         setup() {
-
+            const { getBoardsFromTeam } = useBoard()
             const { routeName } = useRouteName()
+            const { profile } = useProfile()
 
             const boards = reactive({
                 data: [
@@ -76,7 +84,11 @@
                         { name: "Сходить за продуктами", id: 6 },
                         { name: "Сойти с ума", id: 7 }
                     ]
-                }]
+                }],
+
+                createBoard: () => {
+                    
+                }
             })
             const clone = function(el) {
                 return {
@@ -87,7 +99,6 @@
                 window.console.log(evt);
             }
             const openEditDashboard = (id) => {
-
                 console.log(id);
             }
 
@@ -97,7 +108,13 @@
             })
 
             onMounted(() => {
-                routeName.value = 'Мои задачи'
+                routeName.value = 'Мои задачи';
+                console.log(profile.value);
+                let selfTeam = profile.value.teams.find(i => i.is_self);
+                getBoardsFromTeam(selfTeam.id)
+                    .then(r => {
+                        console.log(r);
+                    })
             })
 
             return {
@@ -137,6 +154,18 @@
         border-radius: 12px;
         &:hover {
             box-shadow: 0px 4px 0px #FFD15C;
+        }
+        &.tasks__column_create {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 50px;
+            line-height: 120%;
+
+            color: #FFFFFF;
         }
 
     }

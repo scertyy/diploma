@@ -13,5 +13,7 @@
         /* or 41px */
 
         color: #FFFFFF;
+
+        padding: 0 20px;
     }
 </style>

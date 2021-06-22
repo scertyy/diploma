@@ -28,10 +28,10 @@
                     Мои команды
                 </div>
                 <div class="profile-info__team-cont">
-                    <template  v-for="(team, index) in teams" >
-                        <div class="profile-info__sub-name profile-info__sub-name_m-3" :key="team.id" v-if="!team.is_self">
+                    <template  v-for="(team, index) in teams" :key="team.id">
+                        <router-link :to="`/team/${team.id}`" class="profile-info__sub-name profile-info__sub-name_m-3" >
                             {{index+1}}. {{team.name}}
-                        </div>
+                        </router-link>
                     </template>
 
                 </div>
@@ -51,8 +51,8 @@
         setup(props) {
 
             const teams = computed(() => {
-                if (!props.profile.value) return [];
-                return props.profile.value.filter(i => !i.is_self)
+                if (!props.profile) return [];
+                return props.profile.teams.filter(i => !i.is_self && !i.parent)
             })
 
             return {
@@ -104,6 +104,7 @@
         font-size: 24px;
         line-height: 115%;
         color: #FFD15C;
+        text-align: left;
         &.profile-info__name_mt-20 {
             margin-top: 20px;
         }
@@ -125,6 +126,9 @@
         font-weight: bold;
         font-size: 16px;
         line-height: 115%;
+        color: white;
+        text-decoration: none;
+
         &.profile-info__sub-name_m-3 {
             margin: 3px 0;
         }

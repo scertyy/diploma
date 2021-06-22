@@ -7,9 +7,14 @@
             <div class="modal-create-team__input-container">
                 <BaseInput class="base-input_modal" v-model="name" placeholder="Название"></BaseInput>
             </div>
+            <div class="modal-create-team__input-container">
+                <BaseInput class="base-input_modal" v-model="description" placeholder="Описание команды"></BaseInput>
+            </div>
 
-            <BaseTeamMembersShort class="team_members_short__modal"></BaseTeamMembersShort>
-            <BaseCardProjects class="card__projects__modal"></BaseCardProjects>
+            <BaseTeamMembersShort class="base-team-members-short_modal"
+                                  :members="addContributor.profiles"
+                @add="addContributor.toggleOpened(true)"
+            ></BaseTeamMembersShort>
 
             <div class="modal-create-team__buttons">
                 <BaseButton
@@ -25,6 +30,13 @@
                     Отмена
                 </BaseButton>
             </div>
+
+            <teleport to="body">
+                <ModalSearchProfiles v-if="addContributor.isOpened"
+                                @save="addContributor.addNew"
+                                @close="addContributor.toggleOpened(false)"
+                ></ModalSearchProfiles>
+            </teleport>
         </div>
     </div>
 </template>
@@ -36,22 +48,40 @@
     import BaseModalHeader from '../Base/BaseModalHeader.vue'
     import BaseCardProjects from '../Base/BaseCardProjects.vue'
 
-    import {ref} from 'vue';
+    import {ref, reactive} from 'vue';
+    import ModalSearchProfiles from "./ModalSearchProfiles";
     export default {
-        components: { BaseButton, BaseModalHeader, BaseInput, BaseTeamMembersShort, BaseCardProjects },
+        components: {ModalSearchProfiles, BaseButton, BaseModalHeader, BaseInput, BaseTeamMembersShort, BaseCardProjects },
         setup(props, {emit}) {
             const close = () => {
                 emit('close')
             }
             const save = () => {
-                emit('save', name.value);
+                emit('save', {name: name.value, description: description.value, contributors: addContributor.profiles.map(item => item.profile)});
             }
             const name = ref('');
+            const description = ref('');
+
+            const addContributor = reactive({
+                isOpened: false,
+                profiles: [],
+
+                toggleOpened: (boolean) => {
+                    addContributor.isOpened = boolean
+                },
+                addNew: (profile) => {
+                    addContributor.profiles = [...addContributor.profiles, {profile: profile}];
+                    addContributor.toggleOpened(false);
+                }
+            })
             return {
                 save,
                 close,
 
+                addContributor,
+
                 name,
+                description,
             }
         }
     }
@@ -78,7 +108,6 @@
     }
     .modal-create-team__body {
         width: 600px;
-        height: 500px;
         background: #303030;
         border-radius: 9px;
         padding: 30px 20px;

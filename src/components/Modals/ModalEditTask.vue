@@ -1,16 +1,16 @@
 <template>
-    <div class="modal_edit_task" @mousedown.self="close">
-        <div class="modal_edit_task__body">
+    <div class="modal-edit-task" @mousedown.self="close">
+        <div class="modal-edit-task__body">
 
-            <div contenteditable class="modal_edit_task__contenteditable" name="name" rows="1" cols="30">Покормить рыбок</div>
+            <div contenteditable class="modal-edit-task__contenteditable" name="name" rows="1" cols="30">Покормить рыбок</div>
 
-            <div contenteditable class="modal_edit_task__discription">
+            <div contenteditable class="modal-edit-task__description">
               Покормить кормом из красной коробочки с белой этикеточкой. Не перепутать с белой коробочкой с красной крышечкой! В ней яд для тараканов.
             </div>
 
 
-            <div class="modal_edit_task__buttons">
-              <BaseTeamMembersShort :members="members" class="team_members_short__edit_task_modal"></BaseTeamMembersShort>
+            <div class="modal-edit-task__buttons">
+              <BaseTeamMembersShort :members="members" class="base-team-members-short__edit-task-modal"></BaseTeamMembersShort>
                 <BaseButton
                         class="base-button_small base-button_cancel"
                         @click.self="save"
@@ -68,7 +68,7 @@
 </script>
 
 <style lang="scss">
-    .modal_edit_task {
+    .modal-edit-task {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         width: 100vw;
         height: 100vh;
@@ -87,7 +87,7 @@
             z-index: 1400;
         }
     }
-    .modal_edit_task__body {
+    .modal-edit-task__body {
         width: 800px;
         background: #303030;
         border-radius: 9px;
@@ -95,7 +95,7 @@
         text-align: left;
     }
 
-    .modal_edit_task__contenteditable{
+    .modal-edit-task__contenteditable{
       font-family: Avenir, Helvetica, Arial, sans-serif;
       font-size: 32px;
       font-weight: bold;
@@ -108,7 +108,7 @@
 
     }
 
-    .modal_edit_task__discription{
+    .modal-edit-task__description{
       color: rgb(218, 218, 218);
       margin-top: 20px;
       height: 200px;
@@ -119,7 +119,7 @@
       }
     }
 
-    .modal_edit_task__buttons {
+    .modal-edit-task__buttons {
         width: 100%;
         height: 50px;
         display: flex;
@@ -127,7 +127,7 @@
         margin-top: 45px;
         align-items: center;
     }
-    .modal_edit_task__input-container {
+    .modal-edit-task__input-container {
         margin-top: 30px;
         padding: 0 20px;
     }

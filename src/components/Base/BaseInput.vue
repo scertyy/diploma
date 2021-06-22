@@ -31,6 +31,9 @@
         color: #A7A7A7;
         padding: 22px 24px;
         outline: none;
+        &.base-input_mt-30 {
+            margin-top: 30px;
+        }
         &.base-input_mb-30 {
             margin-bottom: 30px;
         }

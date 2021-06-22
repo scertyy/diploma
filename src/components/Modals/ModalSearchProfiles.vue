@@ -9,10 +9,10 @@
             </div>
             <div class="modal-search-profiles__profiles">
                 <div class="modal-search-profiles__profile" v-for="profile in profiles" :key="profile.id"
-                    @click="selectProfile(profile.id)"
-                     :class="{'modal-search-profiles__profile_active': selectedProfile === profile.id}"
+                    @click="selectProfile(profile)"
+                     :class="{'modal-search-profiles__profile_active': selectedProfile && (selectedProfile.id === profile.id)}"
                 >
-                    <BaseCircleIcon :src="profile.image"></BaseCircleIcon>
+                    <BaseCircleIcon :src="profile.avatar"></BaseCircleIcon>
                     <div class="modal-search-profiles__user-cont">
                         <div class="modal-search-profiles__name">{{profile.first_name}} {{profile.last_name}}</div>
                         <div class="modal-search-profiles__name">{{profile.username}}</div>
@@ -68,8 +68,8 @@
             })
             const profiles = ref([])
             const selectedProfile = ref(null);
-            const selectProfile = (id) => {
-                selectedProfile.value = id;
+            const selectProfile = (profile) => {
+                selectedProfile.value = profile;
             }
             const searchHandler = (value) => {
                 let newTime = new Date().getTime();

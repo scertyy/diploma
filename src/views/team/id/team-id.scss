@@ -2,6 +2,11 @@
     width: 100%;
     height: 100%;
     padding: 30px;
+  position: relative;
+}
+.team-id__row-cont {
+    width: 100%;
+    height: 80%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -35,7 +40,6 @@
     &.team-id__sub-title_mt-0 {
         margin: 0;
         font-size: 32px;
-        padding: 0 20px;
         align-self: flex-start;
         margin-bottom: 20px !important;
         display: flex;
@@ -130,13 +134,38 @@
     margin-top: 50px;
     width: 100%;
     text-align: right;
+    .base-button {
+      margin-right: 15px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+}
+.team-id__header {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 115%;
+  /* or 18px */
+
+
+  color: #FFD15C;
+  text-align: left;
+}
+.team-id__description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 115%;
+
+  color: white;
+  text-align: left;
+  margin: 15px 0 40px;
 }
 
-// Ne Miel styles
-
-.team-team_id__projects_container{
+.team-id__projects_container{
   height: 90%;
-  width: 70%;
+  width: 60%;
 
   .project_short__categories{
     display: flex;
@@ -147,21 +176,25 @@
     margin-bottom: 20px;
 
     .project_short__categories__name{
-      width: 25%;
-      padding: 0 0px 0 20px;
+      width: 30%;
+      padding: 0 0 0 20px;
     }
 
     .project_short__categories__creator{
-      width: 15%;
+      width: 30%;
     }
 
     .project_short__categories__actions{
-      width: 60%;
+      width: 30%;
       padding: 0 10px;
+      text-align: right;
+    }
+    .project_short__categories__actions-cont {
+      width: 10%;
     }
   }
 
-  .team_id__projects{
+  .team-id__projects{
     height: 90%;
     width: 100%;
     border-radius: 20px;
@@ -171,11 +204,11 @@
 
 }
 
-.team-team_id__members{
-  width: 24%;
-  margin: 0 3%;
+.team-id__members{
+  width: 37%;
+  margin: 0 0 0 3%;
 
-  .team-team_id__members__container{
+  .team-id__members__container{
     background-color: white;
     width: 100%;
     height: 300px;
@@ -183,3 +216,21 @@
     padding: 20px
   }
 }
+
+.team-id_opacity-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: .1;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.team-id__default-bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+  text-align: left;
+}
+

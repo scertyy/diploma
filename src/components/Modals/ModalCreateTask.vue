@@ -1,13 +1,13 @@
 <template>
-    <div class="modal-create-team" @mousedown.self="close">
-        <div class="modal-create-team__body">
+    <div class="modal-create-task" @mousedown.self="close">
+        <div class="modal-create-task__body">
             <BaseModalHeader>
                 Создать задачу
             </BaseModalHeader>
-            <div class="modal-create-team__input-container">
+            <div class="modal-create-task__input-container">
                 <BaseInput class="base-input_modal" v-model="name" placeholder="Описание задачи"></BaseInput>
             </div>
-            <div class="modal-create-team__buttons">
+            <div class="modal-create-task__buttons">
                 <BaseButton
                         class="base-button_small"
                         @click="save"
@@ -52,7 +52,7 @@
 </script>
 
 <style lang="scss">
-    .modal-create-team {
+    .modal-create-task {
         width: 100vw;
         height: 100vh;
         background: rgba(0, 0, 0, 0.34);
@@ -68,21 +68,21 @@
             z-index: 1400;
         }
     }
-    .modal-create-team__body {
+    .modal-create-task__body {
         width: 364px;
         background: #303030;
         border-radius: 9px;
         padding: 20px 0;
         text-align: left;
     }
-    .modal-create-team__buttons {
+    .modal-create-task__buttons {
         padding: 0 20px;
         width: 100%;
         display: flex;
         justify-content: space-between;
         margin-top: 45px;
     }
-    .modal-create-team__input-container {
+    .modal-create-task__input-container {
         margin-top: 30px;
         padding: 0 20px;
     }

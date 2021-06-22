@@ -1,34 +1,50 @@
 
 <template>
-  <div class="team_members_short">
-    <h4 class="team_members_short__members_head">Участники</h4>
-
-    <div class="team_members_short__members__photos">
-      <div class="team_members_short__member_photo"
+  <div class="base-team-members-short">
+    <h4 class="base-team-members-short__members-head">Участники</h4>
+    <div class="base-team-members-short__members-photos">
+      <div class="base-team-members-short__member-photo"
         v-for="member in members"
-        :key="member.photo"
-        :style="`background-image: url(../../${member.photo}.png)`"
+        :key="member.profile.avatar"
+        :style="`background: url(${member.profile.avatar}) center / cover no-repeat`"
       ></div>
 
-      <div class="team_members_short__member_add">+</div>
+      <div class="base-team-members-short__member-add" @click="add">+</div>
     </div>
   </div>
 </template>
 
+<script>
+  import {computed} from 'vue';
+  export default{
+    props: {
+      members: Array,
+    },
+    setup(props, {emit}) {
+
+      return {
+        members: computed(() => props.members),
+        add: () => emit('add'),
+      }
+    }
+  }
+</script>
+
+
 <style lang="scss">
 
-  .team_members_short{
+  .base-team-members-short{
     color: white;
     width: 100%;
     border-radius: 5px;
     padding: 5px 0;
 
-    .team_members_short__members__photos{
+    .base-team-members-short__members-photos{
       display: flex;
       height: 30px;
       margin: 0px 10px;
 
-      .team_members_short__member_add{
+      .base-team-members-short__member-add{
         color: #FFD15C;
         font-size: 26px;
         line-height: 120%;
@@ -37,13 +53,13 @@
       }
     }
 
-    .team_members_short__members_head{
+    .base-team-members-short__members-head{
       color: rgb(144, 144, 144);
       text-align: left;
       margin-bottom: 10px;
     }
 
-    .team_members_short__member_photo{
+    .base-team-members-short__member-photo{
       height: 30px;
       width: 30px;
       margin: 0 7px;
@@ -58,25 +74,26 @@
     }
   }
 
-  .team_members_short__modal {
+  .base-team-members-short_modal {
+    padding: 0 20px;
 
-    .team_members_short__members_head{
+    .base-team-members-short__members-head{
       color: white;
       font-size: 22px;
       text-align: left;
       margin-bottom: 10px;
     }
 
-    .team_members_short__members__photos{
-      .team_members_short__member_add{
+    .base-team-members-short__members-photos{
+      .base-team-members-short__member-add{
         display: block;
       }
     }
   }
 
-  .team_members_short__edit_task_modal {
+  .base-team-members-short__edit-task-modal {
 
-    .team_members_short__members_head{
+    .base-team-members-short__members-head{
       color: white;
       font-size: 22px;
       text-align: left;
@@ -84,8 +101,8 @@
       display: none;
     }
 
-    .team_members_short__members__photos{
-      .team_members_short__member_add{
+    .base-team-members-short__members-photos{
+      .base-team-members-short__member-add{
         display: block;
         margin: 0 10px;
       }
@@ -93,8 +110,3 @@
   }
 </style>
 
-<script type="text/javascript">
-  export default{
-    props: ['members']
-  }
-</script>

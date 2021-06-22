@@ -27,6 +27,7 @@
     height: 58px;
     border-radius: 20px 10px 20px 10px;
     position: relative;
+      flex-shrink: 0;
       &.base-circle-icon_big {
           width: 256px;
           height: 256px;
