@@ -28,12 +28,16 @@ class TeamViewSet(viewsets.ModelViewSet):
         profile_id, team_id = get_team_and_user_data(request)
         if not profile_id:
             return Response({'message': 'Передайте идентификатор добавляемого пользователя'})
-        profile = Profile.objects.get(id=profile_id)
-        team = Team.objects.get(id=team_id)
-        if not team:
+        try:
+            profile = Profile.objects.get(id=profile_id)
+        except Profile.DoesNotExist:
+            return Response({'message': 'Профиль с указанным идентификатором не найдена'})
+        try:
+            team = Team.objects.get(id=team_id)
+        except Team.DoesNotExist:
             return Response({'message': 'Команда с указанным идентификатором не найдена'})
         creator = Contributor.objects.get(team=team, profile=current_user)
-        if creator.position != 1:
+        if creator.position.position != '1':
             return Response({'message': 'Вы не являетесь создателем указанной команды'})
         profile.teams.add(team)
         position = Position.objects.create(name='Участник', position=5)
