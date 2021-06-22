@@ -36,6 +36,7 @@ class Task(models.Model):
     difficulty = models.CharField(verbose_name='Сложность задачи', choices=DIFFICULTY_CHOICES, max_length=128, default=50)
     is_completed = models.BooleanField(verbose_name='Выполнена ли задача')
     parent = models.ForeignKey('self', verbose_name='Подзадача', null=True, on_delete=models.CASCADE)
+    when_completed = models.DateTimeField('Когда задача завершена', null=True)
     created = models.DateTimeField("Created", auto_now_add=True, auto_now=False)
     updated = models.DateTimeField("Updated", auto_now_add=False, auto_now=True)
 

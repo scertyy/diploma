@@ -52,6 +52,12 @@ class ProfileViewSet(viewsets.ModelViewSet):
         all_profile_contributors = Contributor.objects.filter(profile=profile, team__in=teams)
         plan = Task.objects.filter(contributor__in=all_profile_contributors, board__title='План').count()
         doing = Task.objects.filter(contributor__in=all_profile_contributors, board__title='В работе').count()
-        deadline = Task.objects.filter(contributor__in=all_profile_contributors, deadline__date=datetime.today()).count()
+        deadline = Task.objects.filter(contributor__in=all_profile_contributors, deadline__day=datetime.today().day).count()
         done = Task.objects.filter(contributor__in=all_profile_contributors, board__title='Завершено').count()
-        return Response(data={'plan': plan, 'doing': doing, 'deadline': deadline, 'done': done})
+        done_today = Task.objects.filter(contributor__in=all_profile_contributors,
+                                         when_completed__day=datetime.today().day, board__title='Завершено').count()
+        done_for_week = Task.objects.filter(contributor__in=all_profile_contributors,
+                                            when_completed__day__gte=datetime.today().day-7,
+                                            board__title='Завершено').count()
+        return Response(data={'plan': plan, 'doing': doing, 'deadline': deadline, 'done': done,
+                              'done_today': done_today, 'done_for_week': done_for_week})
