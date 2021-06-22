@@ -27,6 +27,8 @@ class ContributorSerializer(serializers.ModelSerializer):
 
 
 class SubTeamSerializer(serializers.ModelSerializer):
+    contributors = ContributorSerializer(many=True, read_only=True)
+
     class Meta:
         model = Team
         fields = '__all__'
