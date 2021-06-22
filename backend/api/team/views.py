@@ -19,7 +19,6 @@ class TeamViewSet(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response(data={'success': 'deleted'})
 
-    # ToDo: ПЕРЕПИСАТЬ
     @action(detail=False, methods=['post'], permission_classes=(permissions.IsAuthenticated, ))
     def add_contributor_to_team(self, request):
         """
