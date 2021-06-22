@@ -26,18 +26,19 @@ class TeamViewSet(viewsets.ModelViewSet):
         Добавляет пользователя(профиль) в команду
         """
         current_user = request.user
-        profile_id, team_id, position = get_team_and_user_data(request)
+        profile_id, team_id = get_team_and_user_data(request)
         if not profile_id:
             return Response({'message': 'Передайте идентификатор добавляемого пользователя'})
         profile = Profile.objects.get(id=profile_id)
         team = Team.objects.get(id=team_id)
         if not team:
             return Response({'message': 'Команда с указанным идентификатором не найдена'})
-        if team.creator != current_user:
+        creator = Contributor.objects.get(team=team, profile=current_user)
+        if creator.position != 1:
             return Response({'message': 'Вы не являетесь создателем указанной команды'})
         profile.teams.add(team)
-        team.contributors.add(profile)
-        Contributor.objects.create(profile=profile, team=team, position=position, is_creator=False)
+        position = Position.objects.create(name='Участник', position=5)
+        Contributor.objects.create(profile=profile, team=team, position=position)
         return Response({'success': 'Пользователь добавлен в команду'})
 
     @action(detail=False, methods=['post'], permission_classes=(permissions.IsAuthenticated, ))
@@ -45,18 +46,16 @@ class TeamViewSet(viewsets.ModelViewSet):
         """
         Удаляет пользователя(профиль) из команды
         """
-        profile_id, team_id = get_team_and_user_data(request)
-        if not profile_id:
+        contributor_id, team_id = get_team_and_user_data(request)
+        if not contributor_id:
             return Response({'message': 'Передайте идентификатор удаляемого пользователя'})
-        profile = Profile.objects.get(id=profile_id)
         team = Team.objects.get(id=team_id)
         if not team:
             return Response({'message': 'Команда с указанным идентификатором не найдена'})
-        if team not in profile.teams.all():
-            return Response({'message': 'Данный пользователь не является участником указанной команды'})
-        profile.teams.remove(team)
-        team.contributors.remove(profile)
-        contributor = Contributor.objects.get(profile=profile, team=team, is_creator=False)
+        contributor = Contributor.objects.get(id=contributor_id, team=team)
+        if not contributor:
+            return Response({'message': 'Пользователя с таким идентификатором не существует или '
+                                        'данный пользователь не является участником указанной команды'})
         contributor.delete()
         return Response({'success': 'Пользователь удален из команды'})
 
